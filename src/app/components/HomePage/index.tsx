@@ -18,12 +18,10 @@ import TableTitle from "../TableTitle";
 import { bills } from "@/app/dummyData";
 import Modal from "../Modal";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks/hook";
-import {
-  fetchBills,
-} from "@/app/redux/slices/bills";
+import { fetchBills } from "@/app/redux/slices/bills";
 import { Bill } from "@/next-type";
 import Loader from "../Loader";
-
+import axios from "axios";
 
 type Props = {};
 
@@ -47,12 +45,24 @@ const HomePage = (props: Props) => {
   const [prevData, setPrevData] = useState<Bill>();
 
   useEffect(() => {
-    if (showModal == "edit" || showModal == "delete") {
       const selectedBill = data.bills.find((bill) => bill.id == selectedRow);
       setPrevData(selectedBill);
-    }
+    
   }, [data.bills, prevData, selectedRow, showModal]);
 
+  // useEffect(() => {
+  //   async function getSelectedRowData() {
+  //       const res = await axios.get(`http://127.0.0.1:3500/bills/${selectedRow}`);
+  //       console.log(res.data);
+  //       return res.data;
+      
+  //   }
+    // const selectedBill = data.bills.find((bill) => bill.id == selectedRow);
+    // setPrevData(selectedBill);
+  //   getSelectedRowData();
+  // }, [selectedRow]);
+
+  // console.log(prevData)
 
   // const test= {id:5,
   //   factorNumber: 98735465656,
@@ -94,7 +104,6 @@ const HomePage = (props: Props) => {
     "نحوه ارسال",
   ];
 
-
   const filteredData = searchQuery
     ? data.bills.filter((item) =>
         item.customerName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -106,8 +115,6 @@ const HomePage = (props: Props) => {
       {showModal && (
         <Modal state={showModal} selected={prevData!} onModal={setShowModal} />
       )}
- 
-
 
       <section className="p-2 sm:p-4 max-w-[1000px] mx-auto pt-8">
         <div className={style.title}>
@@ -193,7 +200,7 @@ const HomePage = (props: Props) => {
                         <MdKeyboardArrowDown />
                       </td>
                       <td>{bill.factorNumber}</td>
-                      <td>{bill.factorDate?.toString().split('T')[0]}</td>
+                      <td>{bill.factorDate?.toString().split("T")[0]}</td>
                       <td>{bill.customerName}</td>
                       <td>{bill.factorPrice}</td>
                       <td>{bill.factorType}</td>

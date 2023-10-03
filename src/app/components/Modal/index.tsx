@@ -25,7 +25,6 @@ const Modal = ({ state, selected, onModal }: Props) => {
 
 
 
-
   
   //form validation
   const formik = useFormik({

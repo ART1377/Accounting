@@ -1,0 +1,10 @@
+.table tbody:before {
+  line-height: 8px;
+  content: "\200C";
+  background-color: var(--light);
+  display: block;
+}
+.table td {
+    border: 1px solid var(--main-gray);
+    padding: 4px;
+  }

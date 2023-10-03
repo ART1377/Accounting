@@ -1,0 +1,5 @@
+.container label.required::after{
+    content: '*';
+    color: var(--delete);
+    padding-right: 4px;
+}

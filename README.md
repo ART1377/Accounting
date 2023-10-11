@@ -12,7 +12,7 @@ yarn dev
 pnpm dev
 ```
 
-to run local server
+to run local server : 
 npx json-server -w db.json -p 3500 -H 127.0.0.1
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
